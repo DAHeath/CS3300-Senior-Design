@@ -26,6 +26,11 @@
   </tbody>
 </table>
 
+<p>
+<strong>WHO IS LOGGED IN:</strong>
+  <%= session[:first_name] + " " + session[:last_name] %>
+</p>
+
 <br>
 
 <%= link_to 'New Student', new_student_path %>

@@ -1,7 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
-
-  # GET /students
+  skip_before_filter :require_login, only:[:new]# GET /students
   # GET /students.json
   def index
     @students = Student.all
@@ -30,6 +29,7 @@ class StudentsController < ApplicationController
       if @student.save
         format.html { redirect_to @student, notice: 'Student was successfully created.' }
         format.json { render action: 'show', status: :created, location: @student }
+        session[:current_user_id] = @student.first_name
       else
         format.html { render action: 'new' }
         format.json { render json: @student.errors, status: :unprocessable_entity }
@@ -71,4 +71,6 @@ class StudentsController < ApplicationController
     def student_params
       params.require(:student).permit(:first_name, :last_name, :team_id)
     end
+   
+
 end
