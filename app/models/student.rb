@@ -5,7 +5,6 @@ class Student < ActiveRecord::Base
   validates :last_name, length: {in: 3..20}
 
   validates :email, :presence => true, :email => true
-  validates :email, length: {in: 3..20}
   validates :email, uniqueness: true
 
 	def full_name
